@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+from app.routes import groups
+from app.routes import groups, expenses
 app = FastAPI(
     title="Shared Expense App",
     description="Spreetail Assignment",
@@ -38,7 +39,24 @@ def health():
 
 # groups router
 
+app.include_router(
+    groups.router,
+    prefix="/groups",
+    tags=["Groups"]
+)
+
 # expenses router
+app.include_router(
+    groups.router,
+    prefix="/groups",
+    tags=["Groups"]
+)
+
+app.include_router(
+    expenses.router,
+    prefix="/expenses",
+    tags=["Expenses"]
+)
 
 # importcsv router
 
