@@ -29,7 +29,11 @@ async def register(payload: UserRegister):
             detail="User already exists"
         )
 
+    
+
     hashed_pwd = hash_password(payload.password)
+
+   
 
     new_user = {
         "id": USER_ID_COUNTER,
@@ -39,16 +43,17 @@ async def register(payload: UserRegister):
     }
 
     USER_DATABASE[email_clean] = new_user
+
     USER_ID_COUNTER += 1
 
     access_token = create_access_token(
-        data={"sub": email_clean}
-    )
+    data={"sub": email_clean}
+)
 
-    return TokenResponse(
-        access_token=access_token,
-        token_type="bearer"
-    )
+return TokenResponse(
+    access_token=access_token,
+    token_type="bearer"
+)
 
 
 @router.post(
