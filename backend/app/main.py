@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes import groups
 from app.routes import groups, expenses
+from app.routes import groups, expenses, settlements
 app = FastAPI(
     title="Shared Expense App",
     description="Spreetail Assignment",
@@ -61,3 +62,8 @@ app.include_router(
 # importcsv router
 
 # settlements router
+app.include_router(
+    settlements.router,
+    prefix="/settlements",
+    tags=["Settlements"]
+)
